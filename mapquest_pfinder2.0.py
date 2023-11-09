@@ -30,7 +30,7 @@ def getInput():
 
     # Output if successful json route call
     if json_status == 0:
-        print(Fore.GREEN + "API Status " + str(json_status) + " = Route call successfully\n")
+        print(Fore.GREEN + "API Status " + str(json_status) + " = Route dispatch accomplished\n")
 
         lbl_intro.grid(row=4, column=0, padx=5, pady=10, sticky=W)
         btn_choice1.grid(row=5, column=0, padx=5, pady=5, sticky=W)
@@ -42,39 +42,39 @@ def getInput():
 
     # Output if unsuccessful json route calls
     elif json_status == 402: #Error 402: Invalid user inputs
-        messagebox.showerror("Error", "Oops! We encountered an error.\n" + 
+        messagebox.showerror("Error", "Try Again! We have encountered a problem.\n" + 
         "Status Code: " + str(json_status) + 
-        "; \n Invalid user inputs for one or both locations.")
+        "; \n User inputs for one or both locations are invalid.")
 
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.\n")
+        print(Fore.RED + "Try Again! We have encountered a problem.")
+        print(Fore.RED + "Status Code: " + str(json_status) + "; User inputs for one or both locations are invalid.\n")
     elif json_status == 611: #Error 611: Missing an entry 
-        messagebox.showerror("Error", "Oops! We encountered an error.\n" +
+        messagebox.showerror("Error", "Try Again! We have encountered a problem.\n" +
         "Status Code: " + str(json_status) + 
-        "; \n Missing an entry for one or both locations.")
+        "; \n Missing from both or one of the locations' entries.")
 
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; Missing an entry for one or both locations.\n")
+        print(Fore.RED + "Try Again! We have encountered a problem.")
+        print(Fore.RED + "Status Code: " + str(json_status) + "; Missing from both or one of the locations' entries.\n")
     elif json_status == 500: #Error 500: Error could not complete
-        messagebox.showerror("Error", "Oops! We encountered an error.\n" +
+        messagebox.showerror("Error", "Try Again! We have encountered a problem.\n" +
         "Status Code: " + str(json_status) +
-        "; \n The server encountered an error and could not complete your request.")
+        "; \n Due to an error encountered, the server was unable to fulfill your request.")
 
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; The server encountered an error and could not complete your request.\n")
+        print(Fore.RED + "Try Again! We have encountered a problem.")
+        print(Fore.RED + "Status Code: " + str(json_status) + "; Due to an error encountered, the server was unable to fulfill your request.\n")
     elif json_status == 404: #Error 404: URL does not exist
-        messagebox.showerror("Error", "Oops! We encountered an error.\n" +
+        messagebox.showerror("Error", "Try Again! We have encountered a problem.\n" +
         "Status Code: " + str(json_status) +
-        "; \n The resource addressed by the request URL does not exist.")
+        "; \n The resource that the request URL attempts to access is non-existent.")
 
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; The resource addressed by the request URL does not exist.\n")
+        print(Fore.RED + "Try Again! We have encountered a problem.")
+        print(Fore.RED + "Status Code: " + str(json_status) + "; The resource that the request URL attempts to access is non-existent.\n")
     else:
-        messagebox.showerror("Error", "Oops! We encountered an error.\n" +
+        messagebox.showerror("Error", "Try Again! We have encountered a problem.\n" +
         "For Status Code: " + str(json_status) + "; \n Refer to:" +
         "https://developer.mapquest.com/documentation/directions-api/status-codes")
 
-        print(Fore.RED + "Oops! We encountered an error.")
+        print(Fore.RED + "Try Again! We have encountered a problem.")
         print(Fore.RED + "For Status Code: " + str(json_status) + "; Refer to:")
         print(Fore.RED + "https://developer.mapquest.com/documentation/directions-api/status-codes\n")
 
@@ -190,27 +190,34 @@ def reset():
     btn_find.grid(row=2, column=1, sticky=W)
 
 # GUI Design
+
+lbl_title = Label(window, text="Welcome to MapQuest!", font="Ubuntu 15 bold", fg="red")
+lbl_title.grid(row=0, column=0, columnspan=2, pady=10)
+
+
 lbl_orig = Label(window, text="Starting Location: ")
-lbl_orig.grid(row=0, column=0, padx=5, pady=10, sticky=W)
+lbl_orig.grid(row=3, column=0, padx=56, pady=10, sticky=W)
 
 lbl_dest = Label(window, text="Destination: ")
-lbl_dest.grid(row=1, column=0, padx=5, pady=10, sticky=W)
+lbl_dest.grid(row=4, column=0, padx=56, pady=1, sticky=W)
 
 txtbox_orig = Entry(window, textvariable=orig)
-txtbox_orig.grid(row=0, column=1, sticky=W)
+txtbox_orig.grid(row=3, column=1, sticky=W)
 
 txtbox_dest = Entry(window, textvariable=dest)
-txtbox_dest.grid(row=1, column=1, sticky=W)
+txtbox_dest.grid(row=4, column=1, sticky=W)
 
 btn_find = Button(window, command=getInput, text="Find")
-btn_find.grid(row=2, column=1, sticky=W)
+btn_find.grid(row=5, column=1, sticky=W)
+
+
 
 # Menu
-lbl_intro = Label(window, text="Menu", font="Ubuntu 15 bold")
-btn_choice1 = Button(window, text="General Info", command=choice1)
-btn_choice2 = Button(window, text="Restrictions", command=choice2)
-btn_choice3 = Button(window, text="Miscellaneous", command=choice3)
-btn_choice4 = Button(window, text="Directions", command=choice4)
-btn_reset = Button(window, command=reset, text="Reset")
+lbl_intro = Label(window, text="Menu", font="Ubuntu 10 bold")
+btn_choice1 = Button(window, text="General Info", command=choice1, bg="light blue")
+btn_choice2 = Button(window, text="Restrictions", command=choice2, bg="light blue")
+btn_choice3 = Button(window, text="Miscellaneous", command=choice3, bg="light blue")
+btn_choice4 = Button(window, text="Directions", command=choice4, bg="light blue")
+btn_reset = Button(window, command=reset, text="Reset" bg="blue")
 
 window.mainloop()
