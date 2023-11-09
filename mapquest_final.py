@@ -1,4 +1,4 @@
-
+# import
 from enum import auto
 import urllib.parse
 import requests
@@ -80,7 +80,6 @@ def getInput():
 
     return json_data
 
-# Choices for the distance, route, locations and trip duration
 def choice1():
     json_data = getInput()
 
