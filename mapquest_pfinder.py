@@ -36,7 +36,7 @@ while True:
     dest = input(Style.BRIGHT + "Destination: ")
     if dest == "quit" or dest == "q":
         print("========================================")
-        print(Fore.GREEN + "Thank you for using MapQuest Pathfinder!")
+        print(Fore.GREEN + "Thank you for using MapQuest Pathfinder!, See you soon")
         break
     
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
@@ -112,12 +112,12 @@ while True:
     # Output if unsuccessful json route calls
     elif json_status == 402:
         print("****************************************")
-        print(Fore.RED + "Oops! We encountered an error.")
+        print(Fore.RED + "Try Again! We have encountered a problem.")
         print(Fore.RED + "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
         print("****************************************")
     elif json_status == 611:
         print("****************************************")
-        print(Fore.RED + "Oops! We encountered an error.")
+        print(Fore.RED + "Try Again! We have encountered a problem.")
         print(Fore.RED + "Status Code: " + str(json_status) + "; Missing an entry for one or both locations.")
         print("****************************************")
     elif json_status == 500: # Added status code 500
